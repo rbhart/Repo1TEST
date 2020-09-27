@@ -1,0 +1,24 @@
+fname = input("Enter file name: ")
+if len(fname) < 1 : fname = "mbox-short.txt"
+
+fh = open(fname)
+count = 0
+mx = 0
+
+counts = dict()
+for line in fh:
+    line = line.rstrip()
+    if line.startswith('From ') and len(line) > 3:
+        words = line.split()
+        times = words[5]
+        time = times.split(':')
+        hour = [time[0]]
+        #print (hour)
+        
+        for hours in hour :
+            counts[hours] = counts.get(hours, 0) + 1
+
+srtcounts = sorted(counts.items())
+for tup in srtcounts :
+    print (tup[0], tup [1])    
+        
